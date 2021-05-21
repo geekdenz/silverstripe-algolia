@@ -45,7 +45,7 @@ class AlgoliaReindex extends BuildTask
         }
 
         if (!$request->getVar('forceAll') && !$filter) {
-            $filter = 'AlgoliaIndexed IS NULL';
+            $filter = '"AlgoliaIndexed" IS NULL';
         }
 
         if ($targetClass) {

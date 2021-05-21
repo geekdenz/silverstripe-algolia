@@ -49,7 +49,7 @@ class AlgoliaObjectExtensionTest extends SapphireTest
         $this->assertNotNull(
             DB::query(
                 sprintf(
-                    'SELECT AlgoliaIndexed FROM AlgoliaTestObject WHERE ID = %s',
+                    'SELECT "AlgoliaIndexed" FROM "AlgoliaTestObject" WHERE "ID" = %s',
                     $object->ID
                 )
             )
