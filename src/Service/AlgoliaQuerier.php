@@ -63,6 +63,7 @@ class AlgoliaQuerier
                     $record = $className::get()->byId($id);
 
                     if ($record && $record->canView()) {
+                        $this->augment($record, $hit);
                         $records->push($record);
                     }
                 } catch (Exception $e) {
@@ -79,5 +80,20 @@ class AlgoliaQuerier
             ->setPageLength($results['hitsPerPage']);
 
         return $output;
+    }
+
+    public function augment(&$result, $hit)
+    {
+        if (isset($hit['_highlightResult'])) {
+            if (isset($hit['_highlightResult']['objectTitle'])) {
+                $result->Title = $hit['_highlightResult']['objectTitle']['value'];
+            }
+            $others = array_filter($hit['_highlightResult'], function($key) {
+                return $key !== 'objectTitle';
+            }, ARRAY_FILTER_USE_KEY);
+            foreach ($others as $k => $v) {
+                $result->$k = $v['value'];
+            }
+        }
     }
 }
