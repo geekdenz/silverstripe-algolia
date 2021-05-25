@@ -45,7 +45,7 @@ class AlgoliaObjectExtension extends DataExtension
 
     private static $db = [
         'AlgoliaIndexed' => 'Datetime',
-        'AlgoliaError' => 'Varchar(200)',
+        'AlgoliaError' => 'Text',
         'AlgoliaUUID' => 'Varchar(200)',
         'HideInSearch' => 'Boolean',
     ];
