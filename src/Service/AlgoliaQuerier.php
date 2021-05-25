@@ -62,7 +62,7 @@ class AlgoliaQuerier
                 try {
                     $record = $className::get()->byId($id);
 
-                    if ($record && $record->canView()) {
+                    if ($record && $record->canView() && !$record->HideInSearch) {
                         $this->augment($record, $hit);
                         $records->push($record);
                     }

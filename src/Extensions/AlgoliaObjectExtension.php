@@ -13,6 +13,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\DB;
 use Ramsey\Uuid\Uuid;
 use SilverStripe\Core\Convert;
+use SilverStripe\Forms\CheckboxField;
 use Symbiote\QueuedJobs\Services\QueuedJobService;
 use Wilr\Silverstripe\Algolia\Jobs\AlgoliaDeleteItemJob;
 use Wilr\Silverstripe\Algolia\Jobs\AlgoliaIndexItemJob;
@@ -45,7 +46,8 @@ class AlgoliaObjectExtension extends DataExtension
     private static $db = [
         'AlgoliaIndexed' => 'Datetime',
         'AlgoliaError' => 'Varchar(200)',
-        'AlgoliaUUID' => 'Varchar(200)'
+        'AlgoliaUUID' => 'Varchar(200)',
+        'HideInSearch' => 'Boolean',
     ];
 
     /**
@@ -67,7 +69,8 @@ class AlgoliaObjectExtension extends DataExtension
                 [
                 ReadonlyField::create('AlgoliaIndexed', _t(__CLASS__.'.LastIndexed', 'Last indexed in Algolia'))
                     ->setDescription($this->owner->AlgoliaError),
-                ReadonlyField::create('AlgoliaUUID', _t(__CLASS__.'.UUID', 'Algolia UUID'))
+                ReadonlyField::create('AlgoliaUUID', _t(__CLASS__.'.UUID', 'Algolia UUID')),
+                CheckboxField::create('HideInSearch', 'HideInSearch', $this->owner->HideInSearch),
                 ]
             );
         }
