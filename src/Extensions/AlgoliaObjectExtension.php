@@ -70,7 +70,7 @@ class AlgoliaObjectExtension extends DataExtension
                 ReadonlyField::create('AlgoliaIndexed', _t(__CLASS__.'.LastIndexed', 'Last indexed in Algolia'))
                     ->setDescription($this->owner->AlgoliaError),
                 ReadonlyField::create('AlgoliaUUID', _t(__CLASS__.'.UUID', 'Algolia UUID')),
-                CheckboxField::create('HideInSearch', 'HideInSearch', $this->owner->HideInSearch),
+                CheckboxField::create('HideInSearch', 'Hide in search', $this->owner->HideInSearch),
                 ]
             );
         }

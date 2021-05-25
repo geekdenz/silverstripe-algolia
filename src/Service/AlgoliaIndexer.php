@@ -262,7 +262,7 @@ class AlgoliaIndexer
      */
     public function deleteItem($itemClass, $itemUUID)
     {
-        $item = DataObject::get_one($itemClass, ['AlgoliaUUID' => $itemUUID]);
+        $item = DataObject::get_one($itemClass, ['"AlgoliaUUID"' => $itemUUID]);
 
         if (!$item || !$item->isInDB()) {
             return false;
